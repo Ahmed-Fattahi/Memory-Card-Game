@@ -4,6 +4,7 @@ i=0;
 let counter=[];
 let images=[];
 let click = -1;
+let b=false;
 
 while(true){
     random= Math.floor(Math.random()*12)+1;
@@ -17,14 +18,22 @@ while(true){
     }
 }
 
+async function sleep(seconds){
+    return new Promise((resolved)=> setTimeout(resolved,seconds * 1000));
+}
+
+async function remove_rotate(firstId,secondId){
+    await sleep(1);
+    document.getElementById("image"+firstId).classList.remove('rotate');
+    document.getElementById("image"+secondId).classList.remove('rotate'); 
+}
+
 function rotate(id){
-
     document.getElementById("image"+id).classList.add('rotate');
-
     click = click*(-1);
     if(click==1){
         firstId = id ;
-        console.log('click is :'+click)
+        console.log('click is :'+click);
     }
     if(click==-1){
         console.log('click is :'+click)
@@ -37,19 +46,8 @@ function rotate(id){
                 console.log("---------------------is the same---------------------")
             }
             else{
-                setTimeout(()=>{
-                document.getElementById("image"+firstId).classList.remove('rotate');
-                document.getElementById("image"+secondId).classList.remove('rotate'); 
-                },3000);
+                remove_rotate(firstId,secondId);
             }
         }
     }
 }
-
-
-
-/*
-         c1   (1s)    c2
-         c1*  (1s)    c2   (1s)   c3
-         c1*  (1s)    c2*  (1s)   c3   (1s)    c4
-*/
