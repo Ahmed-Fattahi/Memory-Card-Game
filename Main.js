@@ -4,7 +4,6 @@ i=0;
 let counter=[];
 let images=[];
 let click = -1;
-let b=false;
 
 while(true){
     random= Math.floor(Math.random()*12)+1;
